@@ -7,7 +7,9 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using OpenMcdf;
+using System.Reflection;
 
+[assembly: AssemblyVersion("1.0.*")]
 namespace ShowRevitVersion
 {
     internal static class Program
@@ -33,6 +35,7 @@ namespace ShowRevitVersion
                     string filter = "Revit files (*.rvt;*.rfa)|*.rvt;*.rfa|All files (*.*)|*.*";
                     ofd.Filter = filter;
                     ofd.Multiselect = false;
+                    ofd.Title = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
                     if (ofd.ShowDialog() != DialogResult.OK)
                         return;
 
