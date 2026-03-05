@@ -98,36 +98,51 @@ namespace ShowRevitVersion
             if (!File.Exists(path))
                 throw new FileNotFoundException("File not found: " + path);
 
-            string value = "UNKNOWN";
+            string value = string.Empty;
             using (CompoundFile cf = new CompoundFile(path))
             {
                 CFStream stream = cf.RootStorage.GetStream("BasicFileInfo");
-                byte[] buffer = stream.GetData();
-                string text = Encoding.BigEndianUnicode.GetString(buffer);
+                byte[] buffer0 = stream.GetData();
+                byte[] buffer = buffer0.Where(b => b != 0).ToArray();
+                Encoding encoding = Encoding.UTF8;
+                string text = encoding.GetString(buffer);
                 Match m = Regex.Match(text, @"Format:\s*(20\d{2})");
                 if (m.Success)
                 {
                     value = m.Groups[1].Value;
-
-                    if (path.ToLower().EndsWith(".rvt"))
-                    {
-                        Match worksharingMatch = Regex.Match(text, @"orksharing:\s*(.*?)\r");
-                        if (worksharingMatch.Success)
-                        {
-                            string worksharingText = worksharingMatch.Groups[1].Value;
-                            if(!worksharingText.Contains("Not"))
-                            {
-                                value += ". Workshared! " + worksharingText + " file";
-                            }
-                        }
-                    }
+                    value += GetWorksharingText(path, text);
+                    return value;
                 }
-                else
+
+                Match oldVersionsMath = Regex.Match(text, @"Revit\s*(20\d{2})");
+                if (oldVersionsMath.Success)
                 {
-                    throw new Exception("Failed to determine the Revit version: " + path);
+                    value = oldVersionsMath.Groups[1].Value;
+                    value += GetWorksharingText(path, text);
+                    return value;
                 }
             }
-            return value;
+            string errMsg = "Failed to determine the Revit version: " + path;
+            MessageBox.Show(errMsg);
+            throw new Exception(errMsg);
+        }
+
+        private static string GetWorksharingText(string path, string text)
+        {
+            if (path.ToLower().EndsWith(".rvt"))
+            {
+                Match worksharingMatch = Regex.Match(text, @"orksharing:\s*(.*?)\r");
+                if (worksharingMatch.Success)
+                {
+                    string worksharingText = worksharingMatch.Groups[1].Value;
+                    if (!worksharingText.Contains("Not"))
+                    {
+                        string result = ". Workshared! " + worksharingText + " file";
+                        return result;
+                    }
+                }
+            }
+            return string.Empty;
         }
     }
 }
