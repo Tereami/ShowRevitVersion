@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet build:*)",
+      "Bash(reg query:*)",
+      "Bash(reg add:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\install-contextmenu.ps1\")",
+      "Bash(where iscc:*)",
+      "Bash(where makensis:*)",
+      "Bash(where msiexec:*)",
+      "Bash(powershell -Command \"dir $env:LOCALAPPDATA\\\\ShowRevitVersion\")",
+      "Bash(powershell -Command \"dir C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\fix-registry.ps1\")",
+      "Bash(powershell -Command \"& ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' 2>&1\")",
+      "Bash(powershell -Command \":*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\test-run.ps1\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\''\")",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"Copy-Item ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' -Force; Write-Host ''Copied. Size:'' \\(Get-Item ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe''\\).Length ''bytes''\")",
+      "Bash(powershell -Command \"Get-Process ShowRevitVersion -ErrorAction SilentlyContinue\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\check-culture.ps1\")",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"Copy-Item ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' -Force; Write-Host ''Deployed.''\")"
+    ]
+  }
+}

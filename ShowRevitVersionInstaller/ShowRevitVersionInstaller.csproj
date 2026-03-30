@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net47</TargetFramework>
+    <AssemblyName>ShowRevitVersionSetup</AssemblyName>
+    <RootNamespace>ShowRevitVersionInstaller</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>..\ShowRevitVersion\Revit.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!-- Ensures the main project is built before the installer -->
+  <ItemGroup>
+    <ProjectReference Include="..\ShowRevitVersion\ShowRevitVersion.csproj"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- The embedded payload (file is copied into place by PreparePayload target below) -->
+  <ItemGroup>
+    <EmbeddedResource Include="payload\ShowRevitVersion.exe" />
+  </ItemGroup>
+
+  <!-- Copy the built exe into payload\ so it can be embedded as a resource -->
+  <Target Name="PreparePayload" BeforeTargets="CoreCompile">
+    <Copy SourceFiles="..\ShowRevitVersion\bin\$(Configuration)\net47\ShowRevitVersion.exe"
+          DestinationFolder="$(MSBuildThisFileDirectory)payload\" />
+  </Target>
+
+</Project>
