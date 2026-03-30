@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ShowRevitVersion/ShowRevitVersion.csproj" Id="723e2d22-3a3e-41d5-a8a9-b9791ef42c0a" />
+  <Project Path="ShowRevitVersionInstaller/ShowRevitVersionInstaller.csproj" />
 </Solution>
