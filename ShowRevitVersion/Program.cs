@@ -20,6 +20,17 @@ namespace ShowRevitVersion
         [STAThread]
         static void Main(string[] args)
         {
+            // Load dependency DLLs from embedded resources so the exe works as a single file
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
+            {
+                string dllName = new AssemblyName(e.Name).Name + ".dll";
+                Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(dllName);
+                if (s == null) return null;
+                byte[] data = new byte[s.Length];
+                s.Read(data, 0, data.Length);
+                return Assembly.Load(data);
+            };
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
