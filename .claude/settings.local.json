@@ -16,7 +16,10 @@
       "Bash(powershell -Command \":*)",
       "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\test-run.ps1\")",
       "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\''\")",
-      "Bash(powershell -ExecutionPolicy Bypass -Command \"Copy-Item ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' -Force; Write-Host ''Copied. Size:'' \\(Get-Item ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe''\\).Length ''bytes''\")"
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"Copy-Item ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' -Force; Write-Host ''Copied. Size:'' \\(Get-Item ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe''\\).Length ''bytes''\")",
+      "Bash(powershell -Command \"Get-Process ShowRevitVersion -ErrorAction SilentlyContinue\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\check-culture.ps1\")",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"Copy-Item ''C:\\\\Users\\\\sli\\\\git clones\\\\showRevitVersion\\\\ShowRevitVersion\\\\ShowRevitVersion\\\\bin\\\\Debug\\\\net47\\\\ShowRevitVersion.exe'' ''C:\\\\Users\\\\sli\\\\AppData\\\\Local\\\\ShowRevitVersion\\\\ShowRevitVersion.exe'' -Force; Write-Host ''Deployed.''\")"
     ]
   }
 }
